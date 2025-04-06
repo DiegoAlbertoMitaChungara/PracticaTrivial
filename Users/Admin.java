@@ -10,4 +10,9 @@ public class Admin extends User {
     public boolean permisosAdmin(){
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre Administrador: "+super.nombre+" Password: "+super.pass;
+    }
 }

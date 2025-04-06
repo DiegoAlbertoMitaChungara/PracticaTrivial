@@ -1,8 +1,19 @@
 package PracticaTrivial.Users;
 
-public abstract class User {
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
     protected String nombre;
     protected String pass;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
 
     public User(String nombre, String pass) {
         this.nombre = nombre;

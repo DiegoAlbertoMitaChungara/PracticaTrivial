@@ -10,4 +10,9 @@ public class Player extends User{
     public boolean permisosAdmin(){
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Nombre jugador: "+super.nombre+" Password: "+super.pass;
+    }
 }
