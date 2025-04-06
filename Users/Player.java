@@ -1,4 +1,4 @@
-package Trivial.PracticaTrivial.Users;
+package PracticaTrivial.Users;
 
 public class Player extends User{
 

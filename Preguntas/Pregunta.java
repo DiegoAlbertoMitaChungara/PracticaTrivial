@@ -1,4 +1,4 @@
-package Trivial.PracticaTrivial.Preguntas;
+package PracticaTrivial.Preguntas;
 
 public class Pregunta {
     private String pregunta;

@@ -1,6 +1,6 @@
-package Trivial.PracticaTrivial.Juego;
+package PracticaTrivial.Juego;
 
-import Trivial.PracticaTrivial.Users.User;
+import PracticaTrivial.Users.User;
 
 import java.util.ArrayList;
 

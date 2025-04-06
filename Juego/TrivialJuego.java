@@ -1,4 +1,4 @@
-package Trivial.PracticaTrivial.Juego;
+package PracticaTrivial.Juego;
 
 public class TrivialJuego {
 }

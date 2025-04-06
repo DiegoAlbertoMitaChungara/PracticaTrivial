@@ -1,8 +1,8 @@
-package Trivial.PracticaTrivial.Ficheros;
+package PracticaTrivial.Ficheros;
 
-import Trivial.PracticaTrivial.Preguntas.Pregunta;
-import Trivial.PracticaTrivial.Users.Partida;
-import Trivial.PracticaTrivial.Users.User;
+import PracticaTrivial.Preguntas.Pregunta;
+import PracticaTrivial.Users.Partida;
+import PracticaTrivial.Users.User;
 
 import java.io.File;
 import java.util.ArrayList;
