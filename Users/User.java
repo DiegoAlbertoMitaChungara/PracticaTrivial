@@ -2,7 +2,7 @@ package PracticaTrivial.Users;
 
 import java.io.Serializable;
 
-public abstract class User implements Serializable {
+public abstract class User implements Serializable, Comparable<User> {
     protected String nombre;
     protected String pass;
 

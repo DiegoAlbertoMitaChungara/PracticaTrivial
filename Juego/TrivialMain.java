@@ -52,6 +52,7 @@ public class TrivialMain {
                         if(u instanceof Admin){
                             TrivialAdmin admin = new TrivialAdmin();
                             admin.administrar();
+                            admin.mostrarUsuarios();
                         }else{
                             TrivialJuego juego = new TrivialJuego((Player) u);
                             juego.jugar();
