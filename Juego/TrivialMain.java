@@ -13,6 +13,7 @@ public class TrivialMain {
 
     public static void main(String[] args) {
         int respuesta;
+        boolean inicioSesion = false;
 
         do{
             Scanner scN = new Scanner(System.in);
@@ -37,9 +38,26 @@ public class TrivialMain {
                     users.add(a);
                 }
             }else if(respuesta == 3){
+                String nombreUser = GestionaUsuarios.pideNombreUsuario();
+                String passUser = GestionaUsuarios.pideContrasena();
+
+                User u = GestionaUsuarios.validaCredenciales(nombreUser, passUser);
+
+                if(u != null){
+                    if(u instanceof Admin){
+                        TrivialAdmin admin = new TrivialAdmin();
+                        admin.administrar();
+                    }else{
+                        TrivialJuego juego = new TrivialJuego((Player) u);
+                        juego.jugar();
+                    }
+                    inicioSesion = true;
+                }
+
+
 
             }
-        }while(respuesta != 4);
+        }while(respuesta != 4 && !inicioSesion);
 
 
     }
