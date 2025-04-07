@@ -6,20 +6,17 @@ import PracticaTrivial.Users.Partida;
 import PracticaTrivial.Users.User;
 
 import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GestionaFicheros {
-    private static final File FILE_PREGUNTAS = new File( "src\\Files\\preguntas.txt");
-    private static final File FILE_USERS = new File( "src\\Files\\users.dat");
-    private static final File FILE_PARTIDAS = new File("src\\Files\\partidas.txt");
+    private static final File FILE_PREGUNTAS = Paths.get("src","PracticaTrivial","Files","preguntas.txt").toFile();
+    private static final File FILE_USERS = Paths.get("src","PracticaTrivial","Files","users.dat").toFile();
+    private static final File FILE_PARTIDAS = Paths.get("src","PracticaTrivial","Files","partidas.txt").toFile();
 
-    /**
-     * Atributo que guarda el contenido de filePartidas.txt antes de guardar otra partida (para solucionar la sobreescritura)
-     */
-    private static String partidas = "";
 
     public static void guardaUsers(ArrayList<User> users) throws IOException {
-        FileOutputStream fos = new FileOutputStream("users.dat");
+        FileOutputStream fos = new FileOutputStream(FILE_USERS);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(users);
         oos.close();
@@ -78,10 +75,9 @@ public class GestionaFicheros {
     }
 
     public static void guardaPartida(Partida partida) throws IOException {
-        FileWriter salida = new FileWriter(FILE_PARTIDAS);
+        FileWriter salida = new FileWriter(FILE_PARTIDAS, true);
         BufferedWriter bw = new BufferedWriter(salida);
-        partidas += "Fecha y hora: " + partida.getDate()+ " Usuario: " + partida.getPlayer().getNombre() + " Puntuación: " + partida.getPuntuacion() + "\n";
-        bw.write(partidas);
+        bw.write("Fecha y hora: " + partida.getDate()+ " Usuario: " + partida.getPlayer().getNombre() + " Puntuación: " + partida.getPuntuacion());
 
 
         bw.close();
