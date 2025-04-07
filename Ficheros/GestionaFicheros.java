@@ -6,29 +6,28 @@ import PracticaTrivial.Users.Partida;
 import PracticaTrivial.Users.User;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GestionaFicheros {
-    private static File filePreguntas;
-    private static File fileUser;
-    private static File filePartidas;
+    private static final File FILE_PREGUNTAS = new File( "src\\Files\\preguntas.txt");
+    private static final File FILE_USERS = new File( "src\\Files\\users.dat");
+    private static final File FILE_PARTIDAS = new File("src\\Files\\partidas.txt");
 
     /**
      * Atributo que guarda el contenido de filePartidas.txt antes de guardar otra partida (para solucionar la sobreescritura)
      */
-    private String partidas = "";
+    private static String partidas = "";
 
-    public void guardaUsers(ArrayList<User> users) throws IOException {
+    public static void guardaUsers(ArrayList<User> users) throws IOException {
         FileOutputStream fos = new FileOutputStream("users.dat");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(users);
         oos.close();
     }
-    public ArrayList<User> cargaUsers() throws IOException, ClassNotFoundException {
+    public static ArrayList<User> cargaUsers() throws IOException, ClassNotFoundException {
         ArrayList<User> users;
 
-        FileInputStream fis = new FileInputStream("users.dat");
+        FileInputStream fis = new FileInputStream(FILE_USERS);
         ObjectInputStream ois = new ObjectInputStream(fis);
         users = (ArrayList<User>) ois.readObject();
         ois.close();
@@ -36,8 +35,8 @@ public class GestionaFicheros {
         return users;
     }
 
-    public ArrayList<Pregunta> cargaPreguntas() throws IOException{
-        FileReader entrada = new FileReader("src\\Files\\Preguntas.txt");
+    public static ArrayList<Pregunta> cargaPreguntas() throws IOException{
+        FileReader entrada = new FileReader(FILE_PREGUNTAS);
         BufferedReader br = new BufferedReader(entrada);
 
         ArrayList<Pregunta> preguntas = new ArrayList<>();
@@ -78,11 +77,33 @@ public class GestionaFicheros {
         return preguntas;
     }
 
-    public void guardaPartida(Partida partida){
+    public static void guardaPartida(Partida partida) throws IOException {
+        FileWriter salida = new FileWriter(FILE_PARTIDAS);
+        BufferedWriter bw = new BufferedWriter(salida);
+        partidas += "Fecha y hora: " + partida.getDate()+ " Usuario: " + partida.getPlayer().getNombre() + " Puntuación: " + partida.getPuntuacion() + "\n";
+        bw.write(partidas);
 
+
+        bw.close();
+        salida.close();
     }
 
-    public ArrayList<String> leePartidas(){
+    public static ArrayList<String> leePartidas() throws IOException {
+        FileReader fr = new FileReader(FILE_PARTIDAS);
+        BufferedReader br = new BufferedReader(fr);
 
+        ArrayList<String> partidas = new ArrayList<>();
+        String linea = br.readLine();
+
+        while(linea != null){
+            String infoPartida = linea;
+            partidas.add(infoPartida);
+            linea = br.readLine();
+        }
+
+        br.close();
+        fr.close();
+
+        return partidas;
     }
 }

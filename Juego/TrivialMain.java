@@ -1,5 +1,7 @@
 package PracticaTrivial.Juego;
 
+import PracticaTrivial.Users.Admin;
+import PracticaTrivial.Users.GestionaUsuarios;
 import PracticaTrivial.Users.Player;
 import PracticaTrivial.Users.User;
 
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TrivialMain {
-    private ArrayList<User> users;
+    private static ArrayList<User> users;
 
     public static void main(String[] args) {
         int respuesta;
@@ -25,26 +27,21 @@ public class TrivialMain {
             respuesta = scN.nextInt();
 
             if(respuesta == 1){
-                String nombreJugador;
-                String passwordJugador;
-                String confirmaPassword;
+                Player p = (Player)GestionaUsuarios.creaUsuario(false);
+                if(p != null) {
+                    users.add(p);
+                }
+            }else if(respuesta == 2){
+                Admin a = (Admin) GestionaUsuarios.creaUsuario(true);
+                if(a != null) {
+                    users.add(a);
+                }
+            }else if(respuesta == 3){
 
-                System.out.println("Vas a regsitrar un jugador.");
-                System.out.println("Introduzca el nombre del jugador: ");
-                nombreJugador = scN.nextLine();
-
-                System.out.println("Introduzca el password del jugador: ");
-                passwordJugador = scN.nextLine();
-
-                System.out.println("Confirma el password del jugador: ");
-                confirmaPassword = scN.nextLine();
-
-
-                Player jugador = new Player()
             }
         }while(respuesta != 4);
 
 
-
     }
+
 }
