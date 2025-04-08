@@ -98,7 +98,7 @@ public class GestionaFicheros {
     public static void guardaPartida(Partida partida) throws IOException {
         FileWriter salida = new FileWriter(FILE_PARTIDAS, true);
         BufferedWriter bw = new BufferedWriter(salida);
-        bw.write("\n"+"Fecha y hora: " + partida.getDate()+ " Usuario: " + partida.getPlayer().getNombre() + " Puntuación: " + partida.getPuntuacion());
+        bw.write("Fecha y hora: " + partida.getDate()+ " Usuario: " + partida.getPlayer().getNombre() + " Puntuación: " + partida.getPuntuacion() + "\n");
         bw.close();
         salida.close();
     }

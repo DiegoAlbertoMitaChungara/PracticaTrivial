@@ -15,7 +15,7 @@ public class TrivialMain {
     private static ArrayList<User> users;
 
     public static void main(String[] args) {
-        int respuesta;
+        int respuesta = 0;
         boolean inicioSesion = false;
 
         try{
@@ -29,15 +29,27 @@ public class TrivialMain {
         }
 
         do{
-            Scanner scN = new Scanner(System.in);
-            System.out.println("Bienvenido al juego del Trivial. Por favor, escoge una de las siguientes opciones");
-            System.out.println("""
-                1. Registrar Jugador
-                2. Registrar Administrador
-                3. Iniciar Sesión
-                4. Salir
-                """);
-            respuesta = scN.nextInt();
+
+            // Vuelve a pedir el input si el usuario escribe letras
+            boolean caracterValido = false;
+            do{
+                try{
+                    Scanner scN = new Scanner(System.in);
+                    System.out.println("Bienvenido al juego del Trivial. Por favor, escoge una de las siguientes opciones");
+                    System.out.println("""
+                        1. Registrar Jugador
+                        2. Registrar Administrador
+                        3. Iniciar Sesión
+                        4. Salir
+                    """);
+                    respuesta = scN.nextInt();
+
+                    caracterValido = true;
+                } catch (Exception e) {
+                    System.out.println("Inserte un caracter valido");
+                }
+            }while(!caracterValido);
+
 
             try{
                 if(respuesta == 1){ //El usuario quiere crear un jugador

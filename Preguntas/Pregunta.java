@@ -47,8 +47,17 @@ public class Pregunta {
         //Relleno con -1 porque, por defecto se rellena con 0 y 0 es un índice válido, por lo que puede salir en el número aleatorio
         Arrays.fill(numRepes, -1);
 
-        for(int i = 0; i < opciones.length; i++){
+        int i = 0;
+        while (i < opciones.length){
             nRandom = (int) (Math.random() * opciones.length);
+
+            if(i == 0){
+                if(nRandom == 0){
+                    do{
+                        nRandom = (int) (Math.random() * opciones.length);
+                    }while(nRandom == 0);
+                }
+            }
 
             boolean repeEncontrado = false;
             int j = 0;
@@ -66,9 +75,10 @@ public class Pregunta {
                 opciones[nRandom] = aux;
 
                 numRepes[i] = nRandom;
-            }else{
-                i--;
+                i++;
             }
+
+
         }
     }
 }

@@ -29,8 +29,7 @@ public class TrivialJuego {
      * Metodo que empieza el flujo de juego
      */
     public void jugar(){
-        Scanner scN = new Scanner(System.in);
-        int respuesta;
+        int respuesta = 0;
         System.out.println("Empieza el juego, " + player.getNombre() + "!!");
 
         for(int i = 0; i < preguntas.size(); i++){
@@ -45,8 +44,23 @@ public class TrivialJuego {
             System.out.println("3. " + preguntaActual.getOpcion(2));
             System.out.println("4. " + preguntaActual.getOpcion(3));
 
-            System.out.print("¿Cuál es la correcta?");
-            respuesta = scN.nextInt();
+
+            boolean caracterValido = false;
+            do{
+                try{
+                    Scanner scN = new Scanner(System.in);
+                    do{
+                        System.out.println("¿Cuál es la correcta?");
+                        respuesta = scN.nextInt();
+                    }while(respuesta != 1 && respuesta != 2 && respuesta != 3 && respuesta != 4);
+                    caracterValido = true;
+                } catch (Exception e) {
+                    System.out.println("Solo números del 1 al 4 por favor");
+                }
+
+            }while(!caracterValido);
+
+
 
             if(preguntaActual.esCorrecta(respuesta-1)){
                 partida.sumarPuntos();
