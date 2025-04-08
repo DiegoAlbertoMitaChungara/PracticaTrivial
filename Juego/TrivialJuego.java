@@ -25,6 +25,9 @@ public class TrivialJuego {
 
     }
 
+    /**
+     * Metodo que empieza el flujo de juego
+     */
     public void jugar(){
         Scanner scN = new Scanner(System.in);
         int respuesta;

@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TrivialAdmin {
+
+    /**
+     * Metodo para poder ver todas las partidas que se han jugado
+     */
     public void administrar(){
         try{
             ArrayList<String> partidas = GestionaFicheros.leePartidas();
@@ -21,7 +25,7 @@ public class TrivialAdmin {
     }
 
     /**
-     * Metodo que meustra los nombres de todos los usuarios por orden alfabetico
+     * Metodo que muestra los nombres de todos los usuarios por orden alfabetico
      */
     public void mostrarUsuarios(){
         try{
