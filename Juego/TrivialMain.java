@@ -11,11 +11,22 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TrivialMain {
-    private static ArrayList<User> users = new ArrayList<>();
+
+    private static ArrayList<User> users;
 
     public static void main(String[] args) {
         int respuesta;
         boolean inicioSesion = false;
+
+        try{
+            users = GestionaFicheros.cargaUsers();
+        }catch (IOException e) {
+            System.out.println(e.getMessage());
+            users = new ArrayList<>();
+        }catch (ClassNotFoundException c) {
+            System.out.println(c.getMessage());
+            users = new ArrayList<>();
+        }
 
         do{
             Scanner scN = new Scanner(System.in);

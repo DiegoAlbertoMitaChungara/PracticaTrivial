@@ -44,6 +44,7 @@ public class Pregunta {
         int nRandom;
         int[] numRepes = new int [opciones.length];
 
+        //Relleno con -1 porque, por defecto se rellena con 0 y 0 es un índice válido, por lo que puede salir en el número aleatorio
         Arrays.fill(numRepes, -1);
 
         for(int i = 0; i < opciones.length; i++){

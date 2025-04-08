@@ -48,7 +48,7 @@ public class TrivialJuego {
             System.out.print("¿Cuál es la correcta?");
             respuesta = scN.nextInt();
 
-            if(preguntaActual.getOpcion(respuesta-1).equalsIgnoreCase(preguntaActual.getOpcionCorrecta())){
+            if(preguntaActual.esCorrecta(respuesta-1)){
                 partida.sumarPuntos();
                 System.out.println("Respuesta correcta!!!");
             }else{

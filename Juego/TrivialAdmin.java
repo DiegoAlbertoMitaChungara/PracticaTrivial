@@ -46,22 +46,22 @@ public class TrivialAdmin {
             else{
 
                 /*
-                    Lo que hago con estos bucles anidados es: por cada elemento en 'usuarios', recorro todos los elementos de 'usuarios' buscando un User con una letra menor que la suya, si la encuentra reemplaza el valor de 'userMenor' con ese User
-                    y luego lo elimina del ArrayList (haciendo que recorra 1 iteracion menos cada vez que encontramos el nombre con menor valor. Por eso hago 'i--', porque llegará un momento en el que solo tenga 1 elemento en 'usuarios',
-                    lo guarde en 'userMenor' y después lo elimine, quedando el ArrayLits vacío, con .size() = 0, y como 0 no es < que 0, no vuelve a entrar al bucle, no es un bucle infinito pese a no incrementar el valor de 'i' )
+                    Lo que hago con estos bucles anidados es: por cada elemento de la lista de usuarios ('userMenor' es inicializado con ese valor) recorro todos los elementos de 'usuarios' buscando un User con una letra menor que la de 'userMenor', si la encuentra reemplaza el valor de 'userMenor' con ese User
+                    para que en la siguiente iteración compare con la letra del nuevo 'userMenor' (por si hubiera otra letra menor). Cuando han sido comparados todos los users de 'usuarios' con 'userMenor', añado 'userMenor' a 'usuariosOrdenados'
+                    y luego elimino 'userMenor' de 'usuarios'
                  */
-                for(int i = 0; i < usuarios.size(); i++){
+                int i = 0;
+                while (!usuarios.isEmpty()){
                     userMenor = usuarios.get(i);
                     for(int j = i; j < usuarios.size(); j++){
-                        if(usuarios.get(i).compareTo(usuarios.get(j)) == 1){
+                        if(userMenor.compareTo(usuarios.get(j)) == 1){
                             userMenor = usuarios.get(j);
-                            usuarios.remove(j);
-                            i--;
                         }
                     }
 
                     //Añadimos 'userMenor' a nuestra lista de usuarios ordenados
                     usuariosOrdenados.add(userMenor);
+                    usuarios.remove(userMenor);
                 }
 
                 //Sacamos por pantalla los usuarios ordenados

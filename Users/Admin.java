@@ -21,9 +21,9 @@ public class Admin extends User {
         char thisChar = this.getNombre().charAt(0);
         char oChar = o.getNombre().charAt(0);
 
-        if(thisChar < oChar){
+        if(thisChar > oChar){
             return 1;
-        }else if(thisChar > oChar){
+        }else if(thisChar < oChar){
             return -1;
         }else{
             return 0;
