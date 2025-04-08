@@ -71,7 +71,7 @@ public class GestionaUsuarios {
         Scanner sc = new Scanner(System.in);
         String nombreJugador;
 
-        System.out.println("Vas a regsitrar un jugador.");
+        System.out.println("Vas a regsitrar un usuario.");
         nombreJugador = pideNombreUsuario();
 
         if(existeUsuario(nombreJugador)){

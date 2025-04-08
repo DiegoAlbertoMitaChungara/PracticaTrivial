@@ -14,13 +14,24 @@ public class GestionaFicheros {
     private static final File FILE_USERS = Paths.get("src","PracticaTrivial","Files","users.dat").toFile();
     private static final File FILE_PARTIDAS = Paths.get("src","PracticaTrivial","Files","partidas.txt").toFile();
 
-
+    /**
+     * Metodo para guardar los usuarios registrados (tanto Players como Admins)en un archivo binario que se llama 'users.dat'. Guarda su nombre de usuario y su contraseña
+     * @param users La lista de usuarios que desee guardar
+     * @throws IOException Lanza esta excepción cuando no se ha encontrado el archivo o no lo ha podido crear
+     */
     public static void guardaUsers(ArrayList<User> users) throws IOException {
         FileOutputStream fos = new FileOutputStream(FILE_USERS);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(users);
         oos.close();
     }
+
+    /**
+     * Metodo para cargar los usuarios registrados, tanto Players como Admins
+     * @return ArrayList de User. Una lista con los usuarios leidos
+     * @throws IOException Lanza esta excepción cuando no se ha encontrado el archivo, es decir, no han habido usuarios registrados aún
+     * @throws ClassNotFoundException Lanza esta excepción cuando no se ha encontrado la clase User
+     */
     public static ArrayList<User> cargaUsers() throws IOException, ClassNotFoundException {
         ArrayList<User> users;
 
@@ -32,6 +43,11 @@ public class GestionaFicheros {
         return users;
     }
 
+    /**
+     * Metodo para cargar las preguntas guardadas en el archivo 'partidas.txt'
+     * @return ArrayList de Pregunta. Una lista con las preguntas leidas
+     * @throws IOException Lanza esta excepción cuando no se ha encontrado el archivo
+     */
     public static ArrayList<Pregunta> cargaPreguntas() throws IOException{
         FileReader entrada = new FileReader(FILE_PREGUNTAS);
         BufferedReader br = new BufferedReader(entrada);
@@ -74,6 +90,11 @@ public class GestionaFicheros {
         return preguntas;
     }
 
+    /**
+     * Metodo que guarda una partida en un archivo de texto que se llama 'partidas.txt'. Guarda la fecha y hora de la partida, el usuario y su puntaje
+     * @param partida La partida que quieres guardar
+     * @throws IOException Lanza esta excepción cuando no se ha encontrado el archivo o no lo ha podido crear
+     */
     public static void guardaPartida(Partida partida) throws IOException {
         FileWriter salida = new FileWriter(FILE_PARTIDAS, true);
         BufferedWriter bw = new BufferedWriter(salida);
@@ -82,6 +103,11 @@ public class GestionaFicheros {
         salida.close();
     }
 
+    /**
+     * Metodo para leer las partidas que se han guardado.
+     * @return ArrayList de Strings, cada elemento de la lista contiene la información de una partida
+     * @throws IOException Lanza esta excepción cuando no se ha encontrado el archivo, es decir, no han habido partidas aún
+     */
     public static ArrayList<String> leePartidas() throws IOException {
         FileReader fr = new FileReader(FILE_PARTIDAS);
         BufferedReader br = new BufferedReader(fr);
