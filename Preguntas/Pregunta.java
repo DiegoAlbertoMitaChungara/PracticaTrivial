@@ -35,6 +35,11 @@ public class Pregunta {
      * @return El enunciado de la opción correcta
      */
     public String getOpcionCorrecta(){
+
+        /*
+            Recorre el array de opciones buscando cuál es la correcta (cual de ellas tiene su atributo 'correcta' a true). Como sabemos que una de las 4 opciones es correcta,
+            sabemos que va a devolver si o si un enunciado
+         */
         boolean correcta = false;
         int i = 0;
         while(i < opciones.length && !correcta){
@@ -63,23 +68,36 @@ public class Pregunta {
      */
     public void desordenaOpciones(){
         int nRandom;
+
+        //Array donde van a ser almacenados los números aleatorios que ya hayan sido generados
         int[] numRepes = new int [opciones.length];
 
         //Relleno con -1 porque, por defecto se rellena con 0 y 0 es un índice válido, por lo que puede salir en el número aleatorio
         Arrays.fill(numRepes, -1);
 
+
+        //Bucle que realizará 4 intercambios entre posiciones
         int i = 0;
         while (i < opciones.length){
             nRandom = (int) (Math.random() * opciones.length);
 
+            //Si estoy en la primera vuelta
             if(i == 0){
+                //Y el numero random ha salido 0, por lo que haría un cambio de la posición 0 con la posición 0 (quedaría en la misma posición después del cambio)
                 if(nRandom == 0){
+
+                    //Genera números aleatorios hasta que salga uno distinto de 0 (para que haga efecto el cambio de posiciones)
                     do{
                         nRandom = (int) (Math.random() * opciones.length);
                     }while(nRandom == 0);
                 }
             }
 
+            /*
+                Una vez generado el número aleatorio hay que comprobar que ese número no fue generado antes. Esa comprobación la hacemos recorriendo el array 'numRepes'
+                buscando si hay algún numero que coincida con 'nRandom'. Para ver el resultado de la comprobación he utilizado un flag 'repeEncontrado', inicializado en false
+                , y que solo se pondrá a true si se ha encontrado un número que coincida.
+             */
             boolean repeEncontrado = false;
             int j = 0;
             while(j < numRepes.length && !repeEncontrado){
@@ -90,6 +108,8 @@ public class Pregunta {
                 }
             }
 
+
+            //Si 'repeEncontrado' está en false, quiere decir que no había salido antes 'nRandom', por lo que se puede llevar a cabo el cambio y pasamos a la siguiente posición (con 'i++') para intercambiarla por otra
             if(!repeEncontrado){
                 Opcion aux = opciones[i];
                 opciones[i] = opciones[nRandom];
@@ -98,6 +118,10 @@ public class Pregunta {
                 numRepes[i] = nRandom;
                 i++;
             }
+            /*
+                Si 'repeEncontrado' está en true, quiere decir que 'nRandom' ya salió antes. Por eso no incremento 'i', tiene que volver a repetir el proceso sin pasar a la siguiente posición
+                hasta que 'nRandom' genere un número que no haya sido repetido
+             */
 
 
         }
