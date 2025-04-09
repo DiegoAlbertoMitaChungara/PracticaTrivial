@@ -3,13 +3,24 @@ package PracticaTrivial.Preguntas;
 import java.util.Arrays;
 
 public class Pregunta {
+    /**
+     * Enunciado de la pregunta
+     */
     private String pregunta;
+    /**
+     * Opciones de la pregunta
+     */
     private Opcion[] opciones;
 
     public String getPregunta() {
         return pregunta;
     }
 
+    /**
+     * Constructor de una pregunta. Recibe la pregunta y un array de opciones
+     * @param pregunta El enunciado de la pregunta
+     * @param opciones Las opciones que tiene la pregunta
+     */
     public Pregunta(String pregunta, Opcion[] opciones) {
         this.pregunta = pregunta;
         this.opciones = opciones;
@@ -19,6 +30,10 @@ public class Pregunta {
         return opciones[index].getEnunciado();
     }
 
+    /**
+     * Metodo para saber el enunciado de la opción correcta
+     * @return El enunciado de la opción correcta
+     */
     public String getOpcionCorrecta(){
         boolean correcta = false;
         int i = 0;
@@ -33,6 +48,12 @@ public class Pregunta {
         return opciones[i].getEnunciado();
     }
 
+    /**
+     * Metodo para comprobar si una opcion es correcta
+     * @param indice El índice de la opción para comprobar
+     * @return True - si la opción es correcta. <br>
+     *         False - si la opción es incorrecta.
+     */
     public boolean esCorrecta(int indice){
         return opciones[indice].isCorrecta();
     }
