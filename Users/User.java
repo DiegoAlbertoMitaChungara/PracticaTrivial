@@ -34,12 +34,12 @@ public abstract class User implements Serializable, Comparable<User> {
     }
 
     /**
-     * Metodo para comprobar si la contraseña que se le pasa por parámetro es igual a la contraseña del usuario
+     * Metodo para comprobar si la contraseña que se le pasa por parámetro es igual a la contraseña del usuario desde el que llamas a este metodo
      * @param pass Contraseña para verificar
      * @return True - si las contraseñas son iguales <br>
      *         False - si las contraseñas son distintas
      */
-    public boolean compuebaPass(String pass) {
+    public boolean compruebaPass(String pass) {
         return this.pass.equals(pass);
     }
 

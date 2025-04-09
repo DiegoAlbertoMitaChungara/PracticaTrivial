@@ -17,6 +17,8 @@ public class GestionaUsuarios {
         Scanner sc = new Scanner(System.in);
         String password;
 
+
+        //Vuelve a pedir la contraseña mientras que la contraseña que inserte el usuario sea menor a 8 caracteres
         do{
             System.out.println("Introduzca la contraseña: ");
             password = sc.nextLine();
@@ -50,9 +52,10 @@ public class GestionaUsuarios {
 
             User u = cogeUsuario(nombre);
 
-            if(u.getPass().equals(password)){
+            if(u.compruebaPass(password)){
                 return u;
             }else{
+                System.out.println("La contraseña es incorrecta");
                 return null;
             }
 
@@ -157,7 +160,8 @@ public class GestionaUsuarios {
             System.out.println(e.getMessage());
             return null;
         }catch(ClassNotFoundException e){
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
+            return null;
         }
 
     }
