@@ -10,8 +10,17 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class GestionaFicheros {
+    /**
+     * Guarda el path donde va a crear o a leer el archivo de preguntas.txt
+     */
     private static final File FILE_PREGUNTAS = Paths.get("src","PracticaTrivial","Files","preguntas.txt").toFile();
+    /**
+     * Guarda el path donde va a crear o a leer el archivo de users.dat
+     */
     private static final File FILE_USERS = Paths.get("src","PracticaTrivial","Files","users.dat").toFile();
+    /**
+     * Guarda el path donde va a crear o a leer el archivo de partidas.txt
+     */
     private static final File FILE_PARTIDAS = Paths.get("src","PracticaTrivial","Files","partidas.txt").toFile();
 
     /**
