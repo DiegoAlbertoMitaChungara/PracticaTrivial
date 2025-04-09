@@ -10,10 +10,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TrivialJuego {
+    /**
+     * Lista de preguntas del juego
+     */
     private ArrayList<Pregunta> preguntas;
+    /**
+     * Jugador del juego
+     */
     private Player player;
+    /**
+     * Partida que está jugando el jugador
+     */
     private Partida partida;
 
+    /**
+     * Constructor de un juego. El constructor recibe solo un jugador, dentro se crea una partida con ese jugador se cargan las preguntas del juego
+     * @param player Jugador que va a jugar al juego
+     */
     public TrivialJuego(Player player) {
         try{
             this.player = player;
