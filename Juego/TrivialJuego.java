@@ -42,7 +42,8 @@ public class TrivialJuego {
      * Metodo que empieza el flujo de juego
      */
     public void jugar(){
-        int respuesta = 0;
+        char respuesta;
+        int respuestaInt;
         System.out.println("Empieza el juego, " + player.getNombre() + "!!");
 
         for(int i = 0; i < preguntas.size(); i++){
@@ -52,30 +53,37 @@ public class TrivialJuego {
             System.out.println("Pregunta " + (i+1));
             System.out.println(preguntaActual.getPregunta());
             preguntaActual.desordenaOpciones();
-            System.out.println("1. " + preguntaActual.getOpcion(0));
-            System.out.println("2. " + preguntaActual.getOpcion(1));
-            System.out.println("3. " + preguntaActual.getOpcion(2));
-            System.out.println("4. " + preguntaActual.getOpcion(3));
+            System.out.println("A. " + preguntaActual.getOpcion(0));
+            System.out.println("B. " + preguntaActual.getOpcion(1));
+            System.out.println("C. " + preguntaActual.getOpcion(2));
+            System.out.println("D. " + preguntaActual.getOpcion(3));
 
 
-            boolean caracterValido = false;
+            Scanner scL = new Scanner(System.in);
+
+            String respuestaString;
             do{
-                try{
-                    Scanner scN = new Scanner(System.in);
-                    do{
-                        System.out.println("¿Cuál es la correcta?");
-                        respuesta = scN.nextInt();
-                    }while(respuesta != 1 && respuesta != 2 && respuesta != 3 && respuesta != 4);
-                    caracterValido = true;
-                } catch (Exception e) {
-                    System.out.println("Solo números del 1 al 4 por favor");
-                }
+                do {
+                    System.out.println("¿Cuál es la correcta?");
+                    respuestaString = scL.nextLine();
+                }while(respuestaString.length() > 1);
 
-            }while(!caracterValido);
+                respuesta = respuestaString.charAt(0);
+
+            }while((respuesta != 'A' && respuesta != 'a') && (respuesta != 'B' && respuesta != 'b') && (respuesta != 'C' && respuesta != 'c') && (respuesta != 'D' && respuesta != 'd'));
 
 
+            if(respuesta == 'A' || respuesta == 'a'){
+                respuestaInt = 0;
+            }else if(respuesta == 'B' || respuesta == 'b'){
+                respuestaInt = 1;
+            }else if(respuesta == 'C' || respuesta == 'c'){
+                respuestaInt = 2;
+            }else{
+                respuestaInt = 3;
+            }
 
-            if(preguntaActual.esCorrecta(respuesta-1)){
+            if(preguntaActual.esCorrecta(respuestaInt)){
                 partida.sumarPuntos();
                 System.out.println("Respuesta correcta!!!");
             }else{
