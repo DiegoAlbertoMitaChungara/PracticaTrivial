@@ -42,8 +42,13 @@ public class TrivialJuego {
      * Metodo que empieza el flujo de juego
      */
     public void jugar(){
+
+        //Variable que almacena la respuesta del usuario
         char respuesta;
+
+        //Variable que almacena la respuesta del usuario y que correcponde al índice de la opción que ha elegido
         int respuestaInt;
+
         System.out.println("Empieza el juego, " + player.getNombre() + "!!");
 
         for(int i = 0; i < preguntas.size(); i++){
@@ -61,18 +66,25 @@ public class TrivialJuego {
 
             Scanner scL = new Scanner(System.in);
 
+            //Como 'scL.nextLine()' devuelve un String y no un char, primero almacenaremos la respuesta en un string
             String respuestaString;
+
+            //Bucle que se repite mientras que el usuario no haya introducido A,B,C o D o sus variantes en minúsculas
             do{
+
+                //Bucle que se repite si el usuario ha introducido más de una letra
                 do {
                     System.out.println("¿Cuál es la correcta?");
                     respuestaString = scL.nextLine();
                 }while(respuestaString.length() > 1);
 
+                //Una vez que el usuario ha introducido una sola letra, la convertimos a char
                 respuesta = respuestaString.charAt(0);
 
             }while((respuesta != 'A' && respuesta != 'a') && (respuesta != 'B' && respuesta != 'b') && (respuesta != 'C' && respuesta != 'c') && (respuesta != 'D' && respuesta != 'd'));
 
 
+            //'respuestaInt' contendrá el índice de la opción que haya elegido el usuario
             if(respuesta == 'A' || respuesta == 'a'){
                 respuestaInt = 0;
             }else if(respuesta == 'B' || respuesta == 'b'){
@@ -83,6 +95,7 @@ public class TrivialJuego {
                 respuestaInt = 3;
             }
 
+            //Compruebo si la opción que eligió era la correcta
             if(preguntaActual.esCorrecta(respuestaInt)){
                 partida.sumarPuntos();
                 System.out.println("Respuesta correcta!!!");
@@ -94,6 +107,7 @@ public class TrivialJuego {
 
         }
 
+        //Cuando acaben las preguntas, guarda automáticamente la partida
         try{
             GestionaFicheros.guardaPartida(partida);
         }catch(IOException e){

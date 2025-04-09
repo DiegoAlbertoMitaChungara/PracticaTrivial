@@ -15,9 +15,14 @@ public class TrivialMain {
     private static ArrayList<User> users;
 
     public static void main(String[] args) {
+        //Variable que almacena la respuesta del usuario en las opciones del menú
         int respuesta = 0;
+
+        //Variable de control para saber si el usuario ha iniciado sesión correctamente o no
         boolean inicioSesion = false;
 
+
+        //Inicializo la lista de usuarios cargándolos desde users.dat, si no encuentra el archivo o no encuentra la clase User, la inicializa vacía
         try{
             users = GestionaFicheros.cargaUsers();
         }catch (IOException e) {
@@ -28,9 +33,20 @@ public class TrivialMain {
             users = new ArrayList<>();
         }
 
+        //Repite el bucle mientras que la opción del usuario sea distinto de 4 (4 es la opcion de salir) y mientras no se haya iniciado sesión correctamente
         do{
 
-            // Vuelve a pedir el input si el usuario escribe letras
+            /*
+                Si el usuario escirbe letras, vuelve a pedir al usuario el input. Para verificar si el usuario ha introducido un número
+                he creado un flag 'caracterValido' que inicializo en false. El bucle de pedir el input se repite mientras 'caracterValido'
+                sea false y solo se pondrá a true (la línea que va después del 'scN.nextInt()' ) si en la línea 'respuesta = scN.nextInt();'
+                no saltó una excepción.
+
+                Si NO SALTA la EXCEPCIÓN, continua ejecutando la siguiente línea con normalidad (en la que ponemos el flag a true para que salga del bucle).
+                Si SI SALTA la EXCEPCIÓN, se salta todas las líneas siguientes para ir al 'catch' directamente (dejando el flag a false y provocando que se vuelva a repetir el bucle
+                debido a la condición)
+             */
+
             boolean caracterValido = false;
             do{
                 try{
@@ -51,20 +67,26 @@ public class TrivialMain {
             }while(!caracterValido);
 
 
+            // Puede no encontrar el archivo para leer, por ello hacemos un try-catch
             try{
-                if(respuesta == 1){ //El usuario quiere crear un jugador
+                // El usuario quiere crear un jugador
+                if(respuesta == 1){
                     Player p = (Player)GestionaUsuarios.creaUsuario(false);
                     if(p != null) {
                         users.add(p);
                         GestionaFicheros.guardaUsers(users);
                     }
-                }else if(respuesta == 2){ //El usuario quiere crear un administrador
+                }
+                // El usuario quiere crear un administrador
+                else if(respuesta == 2){
                     Admin a = (Admin) GestionaUsuarios.creaUsuario(true);
                     if(a != null) {
                         users.add(a);
                         GestionaFicheros.guardaUsers(users);
                     }
-                }else if(respuesta == 3){ //El usuario quiere iniciar sesión
+                }
+                // El usuario quiere iniciar sesión
+                else if(respuesta == 3){
                     String nombreUser = GestionaUsuarios.pideNombreUsuario();
                     String passUser = GestionaUsuarios.pideContrasena();
 
@@ -77,7 +99,9 @@ public class TrivialMain {
                             TrivialAdmin admin = new TrivialAdmin();
                             admin.administrar();
                             admin.mostrarUsuarios();
-                        }else{ //Si es una instancia de Player. Un jugador
+                        }
+                        //Si es una instancia de Player. Un jugador
+                        else{
                             TrivialJuego juego = new TrivialJuego((Player) u);
                             juego.jugar();
                         }
@@ -90,7 +114,7 @@ public class TrivialMain {
 
                 }
 
-            } catch (IOException e) {
+            }catch (IOException e) { //Si no se ha encontrado el archivo para leer
                 System.out.println(e.getMessage());
             }
 
