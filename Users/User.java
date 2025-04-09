@@ -3,7 +3,13 @@ package PracticaTrivial.Users;
 import java.io.Serializable;
 
 public abstract class User implements Serializable, Comparable<User> {
+    /**
+     * Nombre del usuario
+     */
     protected String nombre;
+    /**
+     * Contraseña del usuario
+     */
     protected String pass;
 
     public String getNombre() {
@@ -26,9 +32,21 @@ public abstract class User implements Serializable, Comparable<User> {
             return true;
         }else return false;
     }
+
+    /**
+     * Metodo para comprobar si la contraseña que se le pasa por parámetro es igual a la contraseña del usuario
+     * @param pass Contraseña para verificar
+     * @return True - si las contraseñas son iguales <br>
+     *         False - si las contraseñas son distintas
+     */
     public boolean compuebaPass(String pass) {
         return this.pass.equals(pass);
     }
 
+    /**
+     * Metodo para comprobar si un usuario tiene permisos de Administrador o no
+     * @return True - si tiene permisos de Administrador (es Admin)<br>
+     *         False - si no tiene permisos de Administrador (es Player)
+     */
     public abstract boolean permisosAdmin();
 }
