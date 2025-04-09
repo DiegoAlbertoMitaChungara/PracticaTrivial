@@ -65,7 +65,7 @@ public class GestionaFicheros {
         String linea = br.readLine();
 
         while(linea != null){
-            //Leemos cada pregunta y sus posibles respuestas y las al,acenamos en varibales String para, más adelante, poder crear objetos de tipo Opcion y Pregunta
+            //Leemos cada pregunta y sus posibles respuestas y las almacenamos en varibales String para, más adelante, poder crear objetos de tipo Opcion y Pregunta
             String textoPregunta = linea;
             String textoOpcion1 = br.readLine();
             String textoOpcion2 = br.readLine();
@@ -121,12 +121,18 @@ public class GestionaFicheros {
         FileReader fr = new FileReader(FILE_PARTIDAS);
         BufferedReader br = new BufferedReader(fr);
 
+        //Lista que contendrá, en cada elemento, la informaión de una partida
         ArrayList<String> partidas = new ArrayList<>();
+
+        //Guardamos la primera líena en 'linea'
         String linea = br.readLine();
 
+        //Si el archivo no está vacío ('linea' tenía contenido), guarda cada línea en una variable y guarda cada variable en la lista 'partidas'
         while(linea != null){
             String infoPartida = linea;
             partidas.add(infoPartida);
+
+            //Guardamos la siguiente línea para ver si cumple la condición del while en la siguiente iteración
             linea = br.readLine();
         }
 
